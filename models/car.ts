@@ -1,7 +1,7 @@
 class Car{
-    plate:string;
-    color:string;
-    brand:string;
+    plate :string;
+    color :string;
+    brand :string;
     wheels:Wheel[]=new Array();
     
     constructor(plate:string,color:string,brand:string){

@@ -1,9 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="../models/car.js"></script>
-<script src="../models/wheel.js"></script>
-<script src="../controllers/controller.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../models/car.js"></script>
+    <script src="../models/wheel.js"></script>
+    <script src="../controllers/controller.js"></script>
 </head>
 <body>
-    <p id="carInfo"></p>
-    <button onclick="createCar('1212SDS','SEAT','ROJO')">Create car</button>
+    <div class="container">
+       <!--form car-->
+        <form onsubmit="return false;" id="formCar">
+            <h1 class="text-center py-3">Car settings</h1>
+            <div class="row py-3">
+                <div class="col-12 col-md-4">
+                  <label for="plate">Plate</label>
+                  <input type="text" class="form-control form-control-sm" id="plate" name="plate" aria-describedby="emailHelp" placeholder="plate">
+                  
+                </div>
+                <div class="col-12 col-md-4">
+                  <label for="brand">Brand</label>
+                  <input type="text" class="form-control form-control-sm" id="brand" name="brand" placeholder="brand">
+                </div>
+                <div class="col-12 col-md-4">
+                   <label for="color">Color</label>
+                    <input type="text" class="form-control form-control-sm" id="color" name="color" placeholder="color">
+                </div>
+            </div>
+                
+                <button class="btn-warning" onclick="submitForm()">Create car</button>   
+         </form>
+         <!--form wheel-->
+         <form onsubmit="return false;" id="formWheel">
+                <h1 class="text-center py-3">Wheels settings</h1>
+                <div class="row py-3">
+                    <div class="col-12 col-md-3">
+                        <div class="row">
+                            <div class="col-6  col-md-12">
+                                <label for="brandWheel1">Marca rueda 1</label>
+                                <input type="text" class="form-control form-control-sm brand" id="brandWheel1" name="brandWheel1"  placeholder="Marca rueda 1">
+                            </div>
+                            <div class="col-6 col-md-12">
+                                <label for="diamWheel1" class="mt-2">Diámetro rueda 1</label>
+                                <input type="text" class="form-control form-control-sm diameter" id="diamWheel1" name="diamWheel1"  placeholder="Diámetro rueda 1">
+                            </div>
+                        </div> 
+                    </div>
+                    
+                    <div class="col-12 col-md-3">
+                        <div class="row">
+                            <div class="col-6  col-md-12">
+                                <label for="brandWheel2">Marca rueda 2</label>
+                                <input type="text" class="form-control form-control-sm brand" id="brandWheel2" name="brandWheel2"  placeholder="Marca rueda 2">
+                            </div>
+                            <div class="col-6 col-md-12">
+                                <label for="diamWheel2" class="mt-2">Diámetro rueda 2</label>
+                                <input type="text" class="form-control form-control-sm diameter" id="diamWheel2" name="diamWheel2"  placeholder="Diámetro rueda 2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                            <div class="row">
+                                    <div class="col-6  col-md-12">
+                            <label for="brandWheel3">Marca rueda 3</label>
+                            <input type="text" class="form-control form-control-sm brand" id="brandWheel3" name="brandWheel3"  placeholder="Marca rueda 3">
+                        </div>
+                        <div class="col-6 col-md-12">
+                            <label for="diamWheel3" class="mt-2">Diámetro rueda 3</label>
+                            <input type="text" class="form-control form-control-sm diameter" id="diamWheel3" name="diamWheel3"  placeholder="Diámetro rueda 3">
+                        </div> 
+                    </div>
+                        </div>
+                    <div class="col-12 col-md-3">
+                            <div class="row">
+                                    <div class="col-6  col-md-12">
+                            <label for="brandWheel4">Marca rueda 4</label>
+                            <input type="text" class="form-control form-control-sm brand" id="brandWheel4" name="brandWheel4"  placeholder="Marca rueda 4">
+                        </div>
+                        <div class="col-6 col-md-12">
+                            <label for="diamWheel4" class="mt-2">Diámetro rueda 4</label>
+                            <input type="text" class="form-control form-control-sm diameter" id="diamWheel4" name="diamWheel4"  placeholder="Diámetro rueda 4">
+                        </div>
+                    </div>
+                        </div>
+                </div>
+                    
+                    <button class="btn-warning" onclick="submitFormWheel()">Create wheell</button>   
+             </form>
+         <div class="row my-4">
+             <div class="col-6 boxCar">
+                <div class="card">
+                    <h2 class="card-header">Car settings</h2>
+                    <div id="carInfo" class="card-body">
+
+                    </div>
+                </div>
+             </div>
+             
+         </div>
+         
+   
+    </div>
+
+    <!--boostrap-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+</html>
+
+
+
+
+
