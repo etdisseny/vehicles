@@ -1,7 +1,7 @@
-.boxCar{
+.boxCar, .boxWheel{
     display:none;
 }
 
-/* #formWheel{
+ #formWheel{
     display:none;
-} */
+}
