@@ -31,18 +31,41 @@ function createCar(plate, brand, color) {
     structure("COLOR: ", car.color);
 }
 function submitFormWheel() {
-    var formulario = document.getElementById('formWheel');
+    var formularioWheel = document.getElementById('formWheel');
     var inputBrand = document.querySelectorAll("input.brandForm");
     var inputDiameter = document.querySelectorAll("input.diameterForm");
+    var boxWheel = document.querySelector(".boxWheel");
+    var error = 0;
+    car.wheels = new Array();
+    //amb aquest for, poso tots els elements dintre del array car.wheels
     for (var i = 0; i < inputBrand.length; i++) {
         var brand = inputBrand[i].value;
         var diameter = inputDiameter[i].value;
-        car.addWheel(new Wheel(Number(diameter), brand));
-        var numElemento = i + 1;
-        structure2(("RUEDA " + numElemento + ":"), car.wheels[i].brand);
-        structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);
+        if (validationWheel(brand, Number(diameter)) == false) {
+            error++;
+        }
+        else {
+            car.addWheel(new Wheel(Number(diameter), brand));
+            /*var numElemento= i+1;
+     
+            structure2(("RUEDA " + numElemento + ":" ),car.wheels[i].brand);
+            structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);*/
+        }
     }
-    resetea(formulario);
+    if (error == 0) {
+        boxWheel.style.display = 'block';
+        resetea(formularioWheel);
+    }
+    else {
+        alert('Hay que validar todos los campos');
+        boxWheel.style.display = 'none';
+    }
+}
+function pintar(elemento) {
+    for (var i = 0; i < elemento.length; i++) {
+        car.wheels[i].brand;
+        car.wheels[i].diameter;
+    }
 }
 //validamos datos y hacemos aparecer la caja con los datos
 function validationCar(element1, element2, element3) {
@@ -57,17 +80,24 @@ function validationCar(element1, element2, element3) {
     }
 }
 function validationWheel(brand, diameter) {
-    var boxWheel = document.querySelector(".boxWheel");
     if (!brand || !diameter) {
-        alert('Hay que validar todos los campos del formulario');
-        boxWheel.style.display = 'none';
         return false;
     }
     else {
-        boxWheel.style.display = 'block';
         return true;
     }
 }
+/*function validationWheel(brand:string, diameter:number){
+    var boxWheel= <HTMLInputElement>document.querySelector(".boxWheel");
+  
+    if(!brand || !diameter ){
+        alert('Hay que validar todos los campos del formulario');
+        boxWheel.style.display='none';
+    }else{
+        boxWheel.style.display='block';
+        return true;
+    }
+}*/
 //funcion para crear la estructura de los datos
 function structure(title, element) {
     var boxInfo = document.querySelector("#carInfo");
@@ -79,10 +109,11 @@ function structure(title, element) {
 //funcion para crear la estructura de los datos
 function structure2(title, element) {
     var boxInfo = document.querySelector("#wheelInfo");
-    var parrafo = document.createElement('p');
-    var textCar = document.createTextNode(title + element);
-    parrafo.append(textCar);
-    boxInfo.append(parrafo);
+    boxInfo.append(title + element);
+    /* var parrafo= document.createElement('p');
+     var textCar= document.createTextNode(title + element);
+     parrafo.append(textCar);
+     boxInfo.append(parrafo);*/
 }
 function resetea(form) {
     form.reset();

@@ -5,7 +5,6 @@ var car:Car;
 
 
 
-
 function submitForm(){
     var formulario= <HTMLFormElement>document.getElementById('formCar');  
     //recojo los values del formulario
@@ -42,22 +41,59 @@ function createCar(plate:string,brand:string,color:string){
 }
 
 function submitFormWheel(){
-    var formulario= <HTMLFormElement>document.getElementById('formWheel');
+    var formularioWheel= <HTMLFormElement>document.getElementById('formWheel');
     var inputBrand=document.querySelectorAll("input.brandForm");
     var inputDiameter=document.querySelectorAll("input.diameterForm");
-    
+    var boxWheel= <HTMLInputElement>document.querySelector(".boxWheel");
+    var error=0;
+
+    car.wheels=new Array();
+
+    //amb aquest for, poso tots els elements dintre del array car.wheels
    for(let i=0; i<inputBrand.length; i++){
-      
-        let brand=(<HTMLInputElement>inputBrand[i]).value;
-        let diameter=(<HTMLInputElement>inputDiameter[i]).value;
-       car.addWheel(new Wheel(Number(diameter),brand));
-       var numElemento= i+1;
+    
+        var brand=(<HTMLInputElement>inputBrand[i]).value;
+        var diameter=(<HTMLInputElement>inputDiameter[i]).value;
+       
+    
+       
+      if(validationWheel(brand,Number(diameter))==false){
+        error++;
+        
+      }else{
+          
+        car.addWheel(new Wheel(Number(diameter),brand));
+        
+
+       /*var numElemento= i+1;
+
        structure2(("RUEDA " + numElemento + ":" ),car.wheels[i].brand);
-       structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);
+       structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);*/ 
+      }
+    
     } 
-   
-    resetea(formulario);
+    
+
+    if(error==0){
+        boxWheel.style.display='block';
+        resetea(formularioWheel);
+     }else{
+        alert('Hay que validar todos los campos');
+        boxWheel.style.display='none';
+     }
+    
 }
+
+function pintar(elemento:any){
+
+    for(let i=0 ; i <elemento.length;i++){
+        car.wheels[i].brand;
+        car.wheels[i].diameter;
+    }
+
+}
+
+
 
 //validamos datos y hacemos aparecer la caja con los datos
 function validationCar(element1:string, element2:string, element3:string){
@@ -72,16 +108,24 @@ function validationCar(element1:string, element2:string, element3:string){
 }
 
 function validationWheel(brand:string, diameter:number){
-    var boxWheel= <HTMLInputElement>document.querySelector(".boxWheel");
-    if(!brand || !diameter){
-        alert('Hay que validar todos los campos del formulario');
-        boxWheel.style.display='none';
+    if(!brand || !diameter ){
         return false;
+    }else{
+        return true;
+    }
+}
+
+/*function validationWheel(brand:string, diameter:number){
+    var boxWheel= <HTMLInputElement>document.querySelector(".boxWheel");
+  
+    if(!brand || !diameter ){
+        alert('Hay que validar todos los campos del formulario');
+        boxWheel.style.display='none';   
     }else{
         boxWheel.style.display='block';
         return true;
     }
-}
+}*/
 
 
 
@@ -99,10 +143,11 @@ function structure(title:string, element:string){
 //funcion para crear la estructura de los datos
 function structure2(title:string, element:any){
     var boxInfo = <HTMLInputElement>document.querySelector("#wheelInfo");
-    var parrafo= document.createElement('p');
+    boxInfo.append(title + element);
+   /* var parrafo= document.createElement('p');
     var textCar= document.createTextNode(title + element);
     parrafo.append(textCar);
-    boxInfo.append(parrafo);
+    boxInfo.append(parrafo);*/
 }
 
 
