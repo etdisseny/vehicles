@@ -46,13 +46,10 @@ function submitFormWheel() {
         }
         else {
             car.addWheel(new Wheel(Number(diameter), brand));
-            /*var numElemento= i+1;
-     
-            structure2(("RUEDA " + numElemento + ":" ),car.wheels[i].brand);
-            structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);*/
         }
     }
     if (error == 0) {
+        pintar(inputBrand);
         boxWheel.style.display = 'block';
         resetea(formularioWheel);
     }
@@ -63,8 +60,9 @@ function submitFormWheel() {
 }
 function pintar(elemento) {
     for (var i = 0; i < elemento.length; i++) {
-        car.wheels[i].brand;
-        car.wheels[i].diameter;
+        var numElemento = i + 1;
+        structure2(("RUEDA " + numElemento + ":"), car.wheels[i].brand);
+        structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);
     }
 }
 //validamos datos y hacemos aparecer la caja con los datos
@@ -109,11 +107,10 @@ function structure(title, element) {
 //funcion para crear la estructura de los datos
 function structure2(title, element) {
     var boxInfo = document.querySelector("#wheelInfo");
-    boxInfo.append(title + element);
-    /* var parrafo= document.createElement('p');
-     var textCar= document.createTextNode(title + element);
-     parrafo.append(textCar);
-     boxInfo.append(parrafo);*/
+    var parrafo = document.createElement('p');
+    var textCar = document.createTextNode(title + element);
+    parrafo.append(textCar);
+    boxInfo.append(parrafo);
 }
 function resetea(form) {
     form.reset();

@@ -51,30 +51,22 @@ function submitFormWheel(){
 
     //amb aquest for, poso tots els elements dintre del array car.wheels
    for(let i=0; i<inputBrand.length; i++){
-    
         var brand=(<HTMLInputElement>inputBrand[i]).value;
         var diameter=(<HTMLInputElement>inputDiameter[i]).value;
-       
-    
-       
+
       if(validationWheel(brand,Number(diameter))==false){
-        error++;
-        
-      }else{
-          
+        error++;  
+      }else{  
         car.addWheel(new Wheel(Number(diameter),brand));
-        
 
-       /*var numElemento= i+1;
-
-       structure2(("RUEDA " + numElemento + ":" ),car.wheels[i].brand);
-       structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);*/ 
       }
     
     } 
+   
     
 
     if(error==0){
+        pintar(inputBrand);
         boxWheel.style.display='block';
         resetea(formularioWheel);
      }else{
@@ -84,11 +76,17 @@ function submitFormWheel(){
     
 }
 
+
 function pintar(elemento:any){
+    
 
     for(let i=0 ; i <elemento.length;i++){
-        car.wheels[i].brand;
-        car.wheels[i].diameter;
+        
+        var numElemento= i+1;
+
+       structure2(("RUEDA " + numElemento + ":" ),car.wheels[i].brand);
+       structure2(("DIAMETRO " + numElemento + ":"), car.wheels[i].diameter);
+        
     }
 
 }
@@ -143,11 +141,10 @@ function structure(title:string, element:string){
 //funcion para crear la estructura de los datos
 function structure2(title:string, element:any){
     var boxInfo = <HTMLInputElement>document.querySelector("#wheelInfo");
-    boxInfo.append(title + element);
-   /* var parrafo= document.createElement('p');
+   var parrafo= document.createElement('p');
     var textCar= document.createTextNode(title + element);
     parrafo.append(textCar);
-    boxInfo.append(parrafo);*/
+    boxInfo.append(parrafo);
 }
 
 
