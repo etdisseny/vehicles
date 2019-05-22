@@ -8,20 +8,31 @@ function submitForm() {
     var plateValue = document.querySelector("#plate").value;
     var brandValue = document.querySelector("#brand").value;
     var colorValue = document.querySelector("#color").value;
-    validationCar(plateValue, brandValue, colorValue);
-    createCar(plateValue, brandValue, colorValue);
     //aparece un formulario u otro
     var formCar = document.querySelector("#formCar");
     var formWheel = document.querySelector("#formWheel");
+    var boxCar = document.querySelector(".boxCar");
+    /*var boxCar= <HTMLInputElement>document.querySelector(".boxCar");
+    if(!element1 || !element2 || !element3){
+        alert('Hay que validar todos los campos del formulario');
+        boxCar.style.display='none';
+    }else{
+        boxCar.style.display='block';
+        return true;
+    }*/
     if (validationCar(plateValue, brandValue, colorValue) == true) {
+        createCar(plateValue, brandValue, colorValue);
         formCar.style.display = "none";
         formWheel.style.display = "block";
+        boxCar.style.display = 'block';
+        resetea(formulario);
     }
     else {
         formCar.style.display = "block";
         formWheel.style.display = "none";
+        alert('Hay que validar todos los campos del formulario');
+        boxCar.style.display = 'none';
     }
-    resetea(formulario);
 }
 //Creo funcion que llama al objeto car y monto la estructura de los datos
 function createCar(plate, brand, color) {
@@ -36,11 +47,13 @@ function submitFormWheel() {
     var inputDiameter = document.querySelectorAll("input.diameterForm");
     var boxWheel = document.querySelector(".boxWheel");
     var error = 0;
+    //declaro el array
     car.wheels = new Array();
-    //amb aquest for, poso tots els elements dintre del array car.wheels
+    //capturo elements i afegeixo al array car.wheels
     for (var i = 0; i < inputBrand.length; i++) {
         var brand = inputBrand[i].value;
         var diameter = inputDiameter[i].value;
+        //al validar acumulamos errores en una variable o añadimos elemento a array
         if (validationWheel(brand, Number(diameter)) == false) {
             error++;
         }
@@ -58,6 +71,7 @@ function submitFormWheel() {
         boxWheel.style.display = 'none';
     }
 }
+//pintamos ruedas
 function pintar(elemento) {
     for (var i = 0; i < elemento.length; i++) {
         var numElemento = i + 1;
@@ -66,14 +80,14 @@ function pintar(elemento) {
     }
 }
 //validamos datos y hacemos aparecer la caja con los datos
-function validationCar(element1, element2, element3) {
+function validationCar(plate, brand, color) {
     var boxCar = document.querySelector(".boxCar");
-    if (!element1 || !element2 || !element3) {
-        alert('Hay que validar todos los campos del formulario');
-        boxCar.style.display = 'none';
+    var checkPlate = new RegExp(/\d{4}[A-Za-z]{3}/);
+    var testPlate = checkPlate.test(plate);
+    if (!plate || !brand || !color || !testPlate) {
+        return false;
     }
     else {
-        boxCar.style.display = 'block';
         return true;
     }
 }
@@ -85,18 +99,7 @@ function validationWheel(brand, diameter) {
         return true;
     }
 }
-/*function validationWheel(brand:string, diameter:number){
-    var boxWheel= <HTMLInputElement>document.querySelector(".boxWheel");
-  
-    if(!brand || !diameter ){
-        alert('Hay que validar todos los campos del formulario');
-        boxWheel.style.display='none';
-    }else{
-        boxWheel.style.display='block';
-        return true;
-    }
-}*/
-//funcion para crear la estructura de los datos
+//funcion para crear la estructura de los datos de coche
 function structure(title, element) {
     var boxInfo = document.querySelector("#carInfo");
     var parrafo = document.createElement('p');
@@ -104,7 +107,7 @@ function structure(title, element) {
     parrafo.append(textCar);
     boxInfo.append(parrafo);
 }
-//funcion para crear la estructura de los datos
+//funcion para crear la estructura de los datos de ruedas
 function structure2(title, element) {
     var boxInfo = document.querySelector("#wheelInfo");
     var parrafo = document.createElement('p');
@@ -112,18 +115,27 @@ function structure2(title, element) {
     parrafo.append(textCar);
     boxInfo.append(parrafo);
 }
+//llamo al formulario y reseteo
 function resetea(form) {
     form.reset();
 }
-/* var form= document.querySelectorAll("form input");
-  
-   for(let i=0; i<form.length; i++){
-      (<HTMLInputElement>form[i]).value= " ";
-  }  */
-/* function createCar(plate:string,brand:string,color:string){
-    let car=new Car(plate,color,brand);
-    car.addWheel(new Wheel(2,"SEAT"));
-    document.body.innerText="CAR: PLATE: " + car.plate
-    + " COLOR: " +car.color + " BRAND: " + brand
-    + " WHEELS: " + JSON.stringify(car.wheels);
-} */
+function validarDiameter(diameter) {
+    if (diameter.value < 0.4 || diameter.value > 2) {
+        alert('El diametro no es correcto');
+    }
+}
+function validPlate(plate) {
+    var plate = plate.value;
+    var inputPlate = document.querySelector('#plate');
+    var msg = document.querySelector('.msgError');
+    var checkPlate = new RegExp(/\d{4}[A-Za-z]{3}/);
+    var testPlate = checkPlate.test(plate);
+    if (!testPlate) {
+        inputPlate.style.boxShadow = "0 0 0 1px red";
+        msg.style.display = 'block';
+    }
+    else {
+        inputPlate.style.boxShadow = "0 0 0 1px green";
+        msg.style.display = 'none';
+    }
+}

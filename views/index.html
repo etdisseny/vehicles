@@ -14,25 +14,25 @@
 <body>
     <div class="container">
        <!--form car-->
-        <form onsubmit="return false;" id="formCar">
+        <form  id="formCar">
             <h1 class="text-center py-3">Car settings</h1>
             <div class="row py-3">
                 <div class="col-12 col-md-4">
                   <label for="plate">Plate</label>
-                  <input type="text" class="form-control form-control-sm" id="plate" name="plate" aria-describedby="emailHelp" value="1234" placeholder="plate">
-                  
+                  <input type="text" class="form-control form-control-sm" id="plate" name="plate" aria-describedby="emailHelp" maxlength="7" oninput="validPlate(this);" placeholder="plate ej:1234abc" required title='formato 1234fff' pattern="\d{4}[A-Za-z]{3}" >
+                  <div class="msgError">El formato no es el correcto</div>
                 </div>
                 <div class="col-12 col-md-4">
                   <label for="brand">Brand</label>
-                  <input type="text" class="form-control form-control-sm" id="brand" name="brand" value="Seat" placeholder="brand">
+                  <input type="text" class="form-control form-control-sm" id="brand" name="brand" required  placeholder="brand">
                 </div>
                 <div class="col-12 col-md-4">
                    <label for="color">Color</label>
-                    <input type="text" class="form-control form-control-sm" id="color" name="color" value="rojo" placeholder="color">
+                    <input type="text" class="form-control form-control-sm" id="color" name="color" required placeholder="color">
                 </div>
             </div>
                 
-                <button class="btn-warning" onclick="submitForm()">Create car</button>   
+                <input type="submit" class="btn-warning" onclick="submitForm()" value="Create car">
          </form>
          <!--form wheel-->
          <form onsubmit="return false;" id="formWheel">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <label for="diamWheel1" class="mt-2">Diámetro rueda 1</label>
-                                <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel1" name="diamWheel1"  placeholder="Diámetro rueda 1" >
+                                <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel1" oninput="validarDiameter(this);" name="diamWheel1"  placeholder="Diámetro rueda 1" >
                             </div>
                         </div> 
                     </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-6 col-md-12">
                                 <label for="diamWheel2" class="mt-2">Diámetro rueda 2</label>
-                                <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel2" name="diamWheel2"  placeholder="Diámetro rueda 2" >
+                                <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel2" oninput="validarDiameter(this);" name="diamWheel2"  placeholder="Diámetro rueda 2" >
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-6 col-md-12">
                             <label for="diamWheel3" class="mt-2">Diámetro rueda 3</label>
-                            <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel3" name="diamWheel3"  placeholder="Diámetro rueda 3" >
+                            <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel3" oninput="validarDiameter(this);" name="diamWheel3"  placeholder="Diámetro rueda 3" >
                         </div> 
                     </div>
                         </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-6 col-md-12">
                             <label for="diamWheel4" class="mt-2">Diámetro rueda 4</label>
-                            <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel4" name="diamWheel4"  placeholder="Diámetro rueda 4" >
+                            <input type="text" class="form-control form-control-sm diameterForm" id="diamWheel4" oninput="validarDiameter(this);" name="diamWheel4"  placeholder="Diámetro rueda 4" >
                         </div>
                     </div>
                         </div>

@@ -5,3 +5,8 @@
 #formWheel{
     display:none;
 } 
+.msgError{
+    display:none;
+    color:red;
+    font-size: .8rem;
+}
