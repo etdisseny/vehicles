@@ -12,23 +12,13 @@ function submitForm(){
     var plateValue= (<HTMLInputElement>document.querySelector("#plate")).value;
     var brandValue= (<HTMLInputElement>document.querySelector("#brand")).value;
     var colorValue= (<HTMLInputElement>document.querySelector("#color")).value;
-    
-    
-    
-    
+   
 
     //aparece un formulario u otro
     var formCar= <HTMLInputElement>document.querySelector("#formCar");
     var formWheel= <HTMLInputElement>document.querySelector("#formWheel");
     var boxCar= <HTMLInputElement>document.querySelector(".boxCar");
-    /*var boxCar= <HTMLInputElement>document.querySelector(".boxCar");
-    if(!element1 || !element2 || !element3){
-        alert('Hay que validar todos los campos del formulario');
-        boxCar.style.display='none';
-    }else{
-        boxCar.style.display='block';
-        return true;
-    }*/
+   
 
     if(validationCar(plateValue,brandValue,colorValue)==true){
         createCar(plateValue,brandValue,colorValue);

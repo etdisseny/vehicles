@@ -12,14 +12,6 @@ function submitForm() {
     var formCar = document.querySelector("#formCar");
     var formWheel = document.querySelector("#formWheel");
     var boxCar = document.querySelector(".boxCar");
-    /*var boxCar= <HTMLInputElement>document.querySelector(".boxCar");
-    if(!element1 || !element2 || !element3){
-        alert('Hay que validar todos los campos del formulario');
-        boxCar.style.display='none';
-    }else{
-        boxCar.style.display='block';
-        return true;
-    }*/
     if (validationCar(plateValue, brandValue, colorValue) == true) {
         createCar(plateValue, brandValue, colorValue);
         formCar.style.display = "none";
